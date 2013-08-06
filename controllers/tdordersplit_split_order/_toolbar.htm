@@ -1,0 +1,5 @@
+<div class="toolbar">
+	<?= backend_ctr_button('Return to order preview', 'go_back', array('href'=>url('shop/orders/preview/'.$order->id.'?'.uniqid()))) ?>
+<div class="separator"></div>
+	<?= backend_ctr_button('Split selected items into seperate order', 'apply', array('href'=>'#', 'onclick'=>"return gpordersplit_split_selected()")) ?>
+</div>

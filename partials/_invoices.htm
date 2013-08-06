@@ -1,0 +1,43 @@
+<table class="simpleList">
+	<thead>
+		<tr>
+			<th class="order_status">&nbsp;</th>
+		    <th>#</th>
+		    <th class="date">Date and Time</th>
+		    <th>Status</th>
+		    <th class="last">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <?php foreach( $form_model->list_invoices() as $invoice ): ?>
+	    	
+	    	<?php $url = url("/shop/orders/preview/{$invoice->id}/"); ?>
+	    	
+			<tr>
+				<td class="order_status">
+					<span style="background-color: <?= $invoice->status->color; ?>">&nbsp;</span>
+				</td>
+			    <td class="link" onclick="window.location.href = '<?= $url; ?>'">
+			    	<a href="<?= $url; ?>">
+			    		<?= $invoice->id ?>
+			    	</a>
+			    </td>
+			    <td class="date link" onclick="window.location.href = '<?= $url; ?>'">
+			    	<a href="<?= $url; ?>">
+			    		<?= Phpr_Date::display($invoice->order_datetime, '%m/%d/%Y'); ?>
+			    	</a>
+			    </td>
+			    <td class="link" onclick="window.location.href = '<?= $url; ?>'">
+			    	<a href="<?= $url; ?>">
+			    		<?= $invoice->status->name; ?>
+			    	</a>
+			    </td>
+			    <td class="last link" onclick="window.location.href = '<?= $url; ?>'">
+			    	<a href="<?= $url; ?>">
+			    		<?= format_currency( $invoice->total ); ?>
+			    	</a>
+			    </td>
+			</tr>
+	    <?php endforeach; ?>
+	</tbody>
+</table>

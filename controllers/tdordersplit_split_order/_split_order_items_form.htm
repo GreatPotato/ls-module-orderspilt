@@ -1,0 +1,30 @@
+<div id="delete_orders_form" class="critical_message">
+    <h2>Are you sure?</h2>
+    <div class="content">
+	<div class="form400">
+	    <?= Phpr_Form::openTag() ?>
+		<? if (!isset($fatalError)): ?>
+		    <p>You have selected <strong><?= $order_item_count ?></strong> items to split.</p>
+		    <p>Splitting an order is permanent. Once the order is split it <strong>can not</strong> be undone.</p>
+		    <p>Do you really want to split this order?</p>
+		    			
+			<?= backend_button('Cancel', array('onclick'=>'return cancelPopup()', 'class'=>'left')) ?>
+			
+		    <?= backend_ajax_button('Yes, split this order', 'index_onSplitOrders', array(), "
+			    confirm: 'Do you really want to split this order PERMANENTLY?', 
+			    loadIndicator: {injectInElement: true},
+			    onSuccess: cancelPopup,
+			    extraFields: $('listGPOrderSplit_Split_Order_index_list_body').getForm(),
+			    update: 'split-orders-content'") ?>
+
+		    
+		    <div class="clear"></div>
+		<? else: ?>
+		    <?= flash() ?>
+		    <?= backend_button('Cancel', array('onclick'=>'return cancelPopup()')) ?>
+		    <div class="clear"></div>
+		<? endif ?>
+	    </form>
+	</div>
+    </div>
+</div>

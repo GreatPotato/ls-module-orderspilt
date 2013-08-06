@@ -1,0 +1,15 @@
+<?php Phpr_View::beginBlock("head") ?>
+	<link rel="stylesheet" href="/modules/gpordersplit/resources/css/order-split.css" type="text/css"/>
+	<script type="text/javascript" src="/modules/gpordersplit/resources/javascript/order-split.js"></script>
+<?php Phpr_View::endBlock() ?>
+<?php Phpr_View::beginBlock("view") ?>
+    <ul class="breadcrumbs">
+	<li><a href="<?= url('/shop/orders') ?>">Orders</a></li>
+	<li><a href="<?= url('/shop/orders/preview/'.$order->id) ?>">Order #<?= $order->id ?></a></li>
+	<li><?= $this->app_page_title ?></li>
+    </ul>
+
+    <div id="split-orders-content">
+	<?php $this->renderPartial('split_order_page_content') ?>
+    </div>
+<?php Phpr_View::endBlock() ?>
